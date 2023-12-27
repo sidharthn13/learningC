@@ -25,6 +25,40 @@
 //    printf("the ascii value of the char datatype is: %d\n", *ptr); 
 //    }
    
+//arrays:
+// #include <stdio.h>
+// void main(){
+    // int array[10] ={0,1,2,3,4};
+    // printf("array memory address: %p\n", &array);
+    // printf("array element at index: %d\n", array[4]);
+    // printf("array element 1 memory address: %p\n", &array[0]); 
+
+    // char string[] = {'h','i'};
+    // int length = sizeof(string)/sizeof(char);
+    // for(int i = 0 ;i<length ; i++ ){
+    //     printf("%c",string[i]);
+//     char string[10] = "hello";
+//     printf("%c\n",string[6]);
+//     string[5] = 'b';
+//     string[7]= 'c'; 
+//     printf(string); 
+// }
+
+// #include <stdio.h>
+// int main(){
+//    char string1[] = "hello\n";
+//    char string2[] = "world\n";
+//    printf("%s%s",string1,string2);
+//    printf("%zu\n", sizeof(size_t));
+// }
+
+#include<stdio.h>
+void main(){
+    int testVar = 22;
+    int *ptr = &testVar;
+    printf("Address is : %p\n", ptr);
+
+}
 
 
 
