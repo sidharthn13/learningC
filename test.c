@@ -1,18 +1,17 @@
-#include <stdio.h>
-#include <math.h>
-void main()
-{
+#include<stdio.h>
+#include<math.h>
+void main(){
     int num;
-    printf("enter the number:");
+    printf("Enter the number to be reversed:");
     scanf("%d", &num);
+    double result = 0;
     int counter = 1;
-    while(num>=pow(10, counter)){
-        int digitSelector = round(pow(10,counter));
-        int digitsPlace = round(pow(10,counter-1));
-        if((num%digitSelector)/digitsPlace == 0){
-            num += digitsPlace;
-        }
-     counter++;
+    while(num!=0){
+        double digit = (num%10);
+        result += digit * pow(10,-1*counter);
+        counter++;
+        num = num/10;
     }
-    printf("The modified number is: %d\n", num);
-}  
+    result *= pow(10, counter-1);
+    printf("the reversed integer is: %d\n", (int)result);   
+}
