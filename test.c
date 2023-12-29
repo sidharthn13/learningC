@@ -1,22 +1,16 @@
-// program to reverse an array
 #include <stdio.h>
-
-void reverse(int *pointer1, int size){
-    int *pointer2 = (pointer1+ size -1);
-    while(pointer1<pointer2){
-        *pointer1 += *pointer2;
-        *pointer2 = *pointer1-*pointer2;
-        *pointer1 -= *pointer2;
-        pointer1+=1;
-        pointer2 -= 1;
-    }
-}
-
 void main(){
-    int arr[]= {1,2,3,4,5,6,7};
+    int arr[]= {1,2,3,0,10,5,6,7,8,-1};
+    int max = arr[0];
+    int min = arr[0];
     int size = sizeof(arr)/sizeof(int);
-    reverse(arr,size);
-    for(int i = 0; i< size ; i++){
-        printf("%d,", *(arr+i));
+    for(int i = 0 ; i < size ; i++){
+        if(*(arr + i) > max ){
+            max = *(arr+i);
+        }
+        if(*(arr+i)<min ){
+            min = *(arr+i);
+        }
     }
+    printf("MAX is : %d\n MIN is : %d\n", max,min );
 }
