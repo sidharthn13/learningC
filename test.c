@@ -1,16 +1,18 @@
 #include <stdio.h>
 void main(){
-    int arr[]= {1,2,3,0,10,5,6,7,8,-1};
-    int max = arr[0];
-    int min = arr[0];
+    int shift = 2;
+    int arr[] = {1,2,3,4,5};
     int size = sizeof(arr)/sizeof(int);
-    for(int i = 0 ; i < size ; i++){
-        if(*(arr + i) > max ){
-            max = *(arr+i);
-        }
-        if(*(arr+i)<min ){
-            min = *(arr+i);
+    for(int i = 0; i< shift; i++){
+        int j = 0;
+        while(j< size -1){
+            arr[j]+= arr[j+1];
+            arr[j+1] = arr[j]- arr[j+1];
+            arr[j] -= arr[j+1];
+            j++;
         }
     }
-    printf("MAX is : %d\n MIN is : %d\n", max,min );
+    for( int i = 0 ; i< size; i++){
+        printf("%d ", *(arr+i));
+    }
 }
