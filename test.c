@@ -1,15 +1,22 @@
-#include<stdio.h>
+// program to reverse an array
+#include <stdio.h>
+
+void reverse(int *pointer1, int size){
+    int *pointer2 = (pointer1+ size -1);
+    while(pointer1<pointer2){
+        *pointer1 += *pointer2;
+        *pointer2 = *pointer1-*pointer2;
+        *pointer1 -= *pointer2;
+        pointer1+=1;
+        pointer2 -= 1;
+    }
+}
+
 void main(){
-    int num;
-    printf("Enter the number: ");
-    scanf("%d", &num);
-    for(int i = 1; i <=num; i++){
-        for(int j = 1; j <= num-i; j++ ){
-            printf("%c",' ');
-        }
-        for(int k = 1; k <= 2*i-1 ; k++){
-            printf("%c", '*');
-        }
-        printf("%c", '\n');
+    int arr[]= {1,2,3,4,5,6,7};
+    int size = sizeof(arr)/sizeof(int);
+    reverse(arr,size);
+    for(int i = 0; i< size ; i++){
+        printf("%d,", *(arr+i));
     }
 }
