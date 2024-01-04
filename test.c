@@ -1,19 +1,19 @@
 #include <stdio.h>
-#include<string.h>
-
-struct Dog{
-    char breed[12];
-    int age;
-};
-
-int main(){
-    struct Dog dog1;
-    dog1.age = 2;
-    strcpy(dog1.breed, "alsatian ");    
-    printf("%s\n", dog1.breed);
-    struct Dog *structP = &dog1;
-    printf("the memory location of the struct is: %p\n", structP);
-    printf("the memory location of the breed member is: %p\n", structP);
-    printf("the memory location of the age member is: %p\n", structP+1);
-    return 0;
+void generateSubset(int arr[],int sIndex, int eIndex ,int subset[], int count ){
+    if(sIndex>eIndex){
+        printf("%c",'{');
+        for(int i = 0; i< count ;i++){printf("%d,",subset[i]);}
+        printf("%c",'}');
+        printf("\n");
+        return;
+    }
+    subset[count] = arr[sIndex];
+    generateSubset(arr,sIndex+1, eIndex, subset, count+1 );
+    generateSubset(arr,sIndex+1, eIndex, subset, count);
+}
+void main(){
+    int arr[] = {1,2,3,4};
+    int size = sizeof(arr)/sizeof(int);
+    int subset[10] =  {0};
+    generateSubset(arr, 0, size-1, subset, 0);
 }
