@@ -1,19 +1,27 @@
 #include <stdio.h>
-void generateSubset(int arr[],int sIndex, int eIndex ,int subset[], int count ){
-    if(sIndex>eIndex){
-        printf("%c",'{');
-        for(int i = 0; i< count ;i++){printf("%d,",subset[i]);}
-        printf("%c",'}');
-        printf("\n");
+void generate(char arr[], int open, int close, int count)
+{
+
+    if (open == 0 && close == 0)
+    { 
+        printf("%s\n", arr);
         return;
     }
-    subset[count] = arr[sIndex];
-    generateSubset(arr,sIndex+1, eIndex, subset, count+1 );
-    generateSubset(arr,sIndex+1, eIndex, subset, count);
+    if (open > 0)
+    { 
+        arr[count] = '(';
+        generate(arr, open - 1, close, count + 1);
+    }
+
+    if (open < close)
+    { 
+        arr[count] = ')';
+        generate(arr, open, close - 1, count + 1);
+    }
 }
-void main(){
-    int arr[] = {1,2,3,4};
-    int size = sizeof(arr)/sizeof(int);
-    int subset[10] =  {0};
-    generateSubset(arr, 0, size-1, subset, 0);
-}
+void main()
+{
+    int input = 3;
+    char arr[7];
+    generate(arr, input, input, 0);
+}   
