@@ -33,6 +33,35 @@ void appendToLinkedList(LinkedList *linkedListInstance,int nodeValue){
     (*linkedListInstance).current = nodeToAppend;
 }
 
+void deleteAtIndex(LinkedList *linkedListInstance, int index){
+    int counter = 0;
+    Node *curr = (*linkedListInstance).head;
+    while( counter <= index && curr){
+        if(index == 0){
+            (*linkedListInstance).head = (*curr).next;
+            free(curr);
+            return;
+        }
+        else if(counter+1 == index && (*(*curr).next).next){
+            Node *nodeToBeFreed = (*curr).next;
+            (*curr).next = (*(*curr).next).next;
+            free(nodeToBeFreed);
+            return;
+        }
+        else if(counter+1 == index && !(*(*curr).next).next){
+            (*linkedListInstance).current = curr;
+            free((*curr).next);
+            (*curr).next = NULL;
+            return;
+        }
+        else{
+            counter++;
+            curr = (*curr).next;
+        }
+    }
+    printf("invalid index value. Linked list does not have that many elements.\n");
+}
+
 void printLinkedList(LinkedList linkedListInstance){                     //linked list instance is passed by value and not by reference
     Node *curr = linkedListInstance.head;                               //but head and current node markers are passed by pointer values
     while(curr){
@@ -52,5 +81,16 @@ void main(){
     printLinkedList(ll1);
     // printf("the head node of linked list is: %d\n", (*ll1.head).value);
     // printf("the tail node of linked list is: %d\n", (*ll1.current).value);
+
+    deleteAtIndex(&ll1, 1);
+    deleteAtIndex(&ll1, 1);
+    deleteAtIndex(&ll1, 3);
+    deleteAtIndex(&ll1, 1);
+    deleteAtIndex(&ll1, 0);
+    deleteAtIndex(&ll1, 2);
+    printf("the head node of linked list is: %d\n", (*ll1.head).value);
+    printf("the tail node of linked list is: %d\n", (*ll1.current).value);
+    printLinkedList(ll1);
+
 
 }
