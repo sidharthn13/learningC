@@ -18,11 +18,18 @@ LinkedList createLL(int headValue){
     LinkedList ll = {headNode, headNode};
     return ll;
 }
+void insertAtBeginning(LinkedList *linkedListInstance, int nodeValue){
+    Node *nodeToBeInserted = (Node*)malloc(sizeof(Node));
+    (*nodeToBeInserted).value = nodeValue;
+    (*nodeToBeInserted).next = (*linkedListInstance).head;
+    (*linkedListInstance).head = nodeToBeInserted;
+}
+
 void appendToLinkedList(LinkedList *linkedListInstance,int nodeValue){
     Node *nodeToAppend = (Node*)malloc(sizeof(Node));
     (*nodeToAppend).value = nodeValue;
     (*nodeToAppend).next = NULL;
-    (*(*linkedListInstance).current).next = nodeToAppend;
+    (*(*linkedListInstance).current).next = nodeToAppend;                //has complexity O(1) as tail node is used
     (*linkedListInstance).current = nodeToAppend;
 }
 
@@ -37,11 +44,13 @@ void printLinkedList(LinkedList linkedListInstance){                     //linke
 
 void main(){
     LinkedList ll1 = createLL(0);
+    insertAtBeginning(&ll1,-1);
     appendToLinkedList(&ll1,1);
     appendToLinkedList(&ll1,2);
     appendToLinkedList(&ll1,3);
     appendToLinkedList(&ll1,4);
-    // printf("the memory address of the head node is : %p\n", (void*)ll1.head);
-    // printf("the value of the head node is: %d\n", (*ll1.head).value);
     printLinkedList(ll1);
+    // printf("the head node of linked list is: %d\n", (*ll1.head).value);
+    // printf("the tail node of linked list is: %d\n", (*ll1.current).value);
+
 }
