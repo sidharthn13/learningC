@@ -23,8 +23,7 @@ void addToHashMap(KV* arrayPointer[], int key ){
 int getFromHashMap(KV* arrayPointer[],int key){
     int index = hash(key);
     if(arrayPointer[index] != NULL){
-        KV *node = arrayPointer[index];
-        return (*node).value;
+        return arrayPointer[index]->value;       //the dot(.) operator has higher precedence compared to the dereference operator(*)
     }
     else{printf("error Null value\n");}
 }
